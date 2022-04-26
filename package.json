@@ -2,21 +2,33 @@
   "name": "nft-marketplace",
   "version": "1.0.0",
   "description": "A sample upgradeable nft marketplace",
-  "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrateLocal": "truffle migrate --network localNetwork --reset --compile-all",
+    "chain": "ganache-cli",
+    "test": "truffle test --network localNetwork"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.4.1",
+    "@openzeppelin/contracts-upgradeable": "^4.4.1",
+    "@truffle/hdwallet-provider": "^2.0.3",
+    "chai": "^4.3.6",
+    "openzeppelin-test-helpers": "^0.5.1",
+    "truffle-assertions": "^0.9.2"
+  },
+  "devDependencies": {
+    "@openzeppelin/truffle-upgrades": "^1.11.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xGuIInE/hashtiki-nft-marketplace.git"
+    "url": "git+https://github.com/xGuIInE/upgradeable-nft-marketplace.git"
   },
   "author": "guuinea@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xGuIInE/hashtiki-nft-marketplace/issues"
+    "url": "https://github.com/xGuIInE/upgradeable-nft-marketplace/issues"
   },
-  "homepage": "https://github.com/xGuIInE/hashtiki-nft-marketplace#readme"
+  "homepage": "https://github.com/xGuIInE/upgradeable-nft-marketplace.git#readme"
 }
