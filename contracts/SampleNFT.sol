@@ -12,6 +12,8 @@ contract SampleNFT is Initializable, ERC721Upgradeable, PausableUpgradeable, Acc
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
 
+    address private marketplaceAdd;
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() initializer {}
 
@@ -41,6 +43,8 @@ contract SampleNFT is Initializable, ERC721Upgradeable, PausableUpgradeable, Acc
 
     function safeMint(address to, uint256 tokenId) public onlyRole(MINTER_ROLE) {
         _safeMint(to, tokenId);
+        _setApprovalForAll(to, marketplaceAdd, true);
+
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
@@ -66,5 +70,10 @@ contract SampleNFT is Initializable, ERC721Upgradeable, PausableUpgradeable, Acc
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+    
+    function setMarketplaceAdd(address mp) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(mp != address(0));
+        marketplaceAdd = mp;
     }
 }
